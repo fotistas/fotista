@@ -2,14 +2,14 @@
 <html>
 <head>
 	<title>eCommerce Auction Webstore</title>
-	<link rel="stylesheet" type="text/css" href="css/grid.css">
-	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="css/flexslider.css">
+	<link rel="stylesheet" type="text/css" href="{{ URL::to('css/grid.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ URL::to('css/font-awesome.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ URL::to('css/flexslider.css') }}">
 
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="{{ URL::to('css/style.css') }}">
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script type="text/javascript" src="js/jquery.flexslider-min.js"></script>
+	<script type="text/javascript" src="{{ URL::to('js/jquery.flexslider-min.js') }}"></script>
 </head>
 <body>
 	<div id="languages-container">

@@ -11,10 +11,12 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('home');
-});
+Route::controller('/admin', 'AdminController');
+
+Route::resource('/product', 'ProductController');
+
+Route::controller('/', 'HomeController');
+
 
 
 

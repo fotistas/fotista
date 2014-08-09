@@ -1,0 +1,147 @@
+body {
+	font-family: Arial;
+	font-size: 14px;
+}
+
+ul.menu {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+a {
+	text-decoration: none;
+	/*color: rgb(37, 116, 255);*/
+	color: black;
+}
+a:hover {
+	text-decoration: underline;
+}
+
+h1, h2 {
+	font-weight: 300;
+}
+
+.thumbnail img {
+	width: 100%;
+	height: auto;
+}
+
+.transition {
+	-webkit-transition: all 300ms ease-out;
+	-moz-transition: all 300ms ease-out;
+	-o-transition: all 300ms ease-out;
+	transition: all 300ms ease-out;
+}
+
+/*----------------------------------------*/
+/*-------------- Sidebar -----------------*/
+/*----------------------------------------*/
+
+#admin-sidebar-container {
+	float: left;
+	width: 200px;
+	padding: 10px 0;
+	padding-top: 50px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	background: #2C3E50;
+}
+
+
+#admin-sidebar-container ul.menu a {
+	color: white;
+	font-size: 13px;
+	display: block;
+	padding: 10px 10px;
+	position: relative;
+	border-left: 2px solid #2C3E50;
+}
+
+#admin-sidebar-container ul.menu a:hover,
+#admin-sidebar-container ul.menu li.active > a {
+	text-decoration: none;
+	border-left: 2px solid #3498DB;
+	background: rgba(0, 0, 0, 0.1);
+}
+
+#admin-sidebar-container ul.sub-menu {
+	background: rgba(0, 0, 0, 0.2);
+}
+#admin-sidebar-container ul.sub-menu li a {
+	padding-left: 32px;
+}
+
+#admin-sidebar-container ul.menu li.has-children > a:after {
+	content: "\f138";
+	display: block;
+	position: absolute;
+	top: 30%;
+	right: 10px;
+	color: rgba(250, 250, 250, 0.4);
+	font-family: FontAwesome;
+}
+
+#admin-sidebar-container ul.menu li.active.has-children > a:after {
+	content: "\f13a";
+}
+
+#admin-sidebar-container ul.menu a .fa {
+	margin-right: 5px;
+}
+
+
+
+
+/*----------------------------------------*/
+/*----------- Main content ---------------*/
+/*----------------------------------------*/
+
+#admin-main-content-container {
+	width: auto;
+	margin-left: 200px;
+	position: absolute;
+	right: 0;
+	left: 0;
+}
+
+#admin-top-menu {
+	height: 52px;
+	padding-top: 17px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid rgb(218, 218, 218);
+}
+
+#admin-top-menu .title {
+	font-weight: 700;
+	color: gray;
+}
+
+#admin-top-menu .title .fa {
+	color: #6EC3FC;
+	margin-right: 8px;
+	font-size: 16px;
+}
+
+#login-menu a {
+	font-weight: 700;
+	position: relative;
+	padding-right: 20px;
+	color: gray;
+}
+#login-menu a:hover { text-decoration: none; }
+#login-menu a:after {
+	position: absolute;
+	right: 5px;
+	top: 13%;
+	font-weight: 300;
+	content: "\f0d7";
+	display: block;
+	font-family: FontAwesome;
+}
+
+#admin-main-content-container .content {
+	padding: 0 10px;
+}

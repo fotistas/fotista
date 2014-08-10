@@ -17,6 +17,7 @@ class CreateBidsTable extends Migration {
 			$table -> integer('product_id');
 			$table -> integer('user_id');
 			$table -> float('bid');
+			$table -> timestamps();
 		});
 	}
 

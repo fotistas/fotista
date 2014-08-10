@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration {
 			$table -> float('salep_price');
 			$table -> float('opening_bid');
 			$table -> string('picture'); // VARCHAR(255)
+			$table -> timestamps();
 		});
 
 		Schema::table('bids', function($table){
@@ -35,6 +36,10 @@ class CreateProductsTable extends Migration {
 	 */
 	public function down()
 	{
+		Schema::table('bids', function($table){
+			$table->dropForeign('bids_product_id_foreign');
+			$table->dropColumn('product_id');
+		});
 		Schema::drop('products');
 	}
 

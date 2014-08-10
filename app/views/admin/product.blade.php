@@ -61,7 +61,7 @@
 
 						<div class="col-1-3">
 							{{ Form::label('product-type', 'Product type:') }}
-							{{ Form::select('product-type', array('simple' => 'Simple Product', 'auction' => 'Auction'), 'simple') }}
+							{{ Form::select('product-type', array('simple' => 'Simple Product', 'auction' => 'Auction'), $type) }}
 						</div> <!-- /col-1-3 -->
 
 					</div> <!-- /row -->

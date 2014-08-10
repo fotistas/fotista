@@ -17,6 +17,7 @@ class AdminController extends BaseController {
 		$this -> data['title_icon'] = 'fa-shopping-cart';
 		$this -> data['active'] = 'products';
 		$this -> data['subtitle'] = 'Add new product';
+		$this -> data['type'] = 'simple';
 
 		return View::make('admin.product', $this -> data );
 	}

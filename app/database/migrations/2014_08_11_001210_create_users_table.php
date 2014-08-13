@@ -34,8 +34,8 @@ class CreateUsersTable extends Migration {
 	public function down()
 	{
 		Schema::table('bids', function($table){
-			$table->dropForeign('bids_user_id_foreign');
-			$table->dropColumn('user_id');
+			$table -> sdropForeign('bids_user_id_foreign');
+			$table -> dropColumn('user_id');
 		});
 		Schema::drop('users');
 	}

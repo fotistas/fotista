@@ -1,13 +1,13 @@
 $(document).ready(function(){
 
-	var product_type = $('#product-type').val();
+	var product_type = $('#type').val();
 
 	$('#upload-thumbnail').click(function(e){
 		e.preventDefault();
 		$('#thumbnail').click();
 	});
 
-	$('#product-type').on('change', function() {
+	$('#type').on('change', function() {
 		product_type = this.value;
 		change_view_by_type( product_type );
 	});

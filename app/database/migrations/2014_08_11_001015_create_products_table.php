@@ -37,8 +37,8 @@ class CreateProductsTable extends Migration {
 	public function down()
 	{
 		Schema::table('bids', function($table){
-			$table->dropForeign('bids_product_id_foreign');
-			$table->dropColumn('product_id');
+			$table -> dropForeign('bids_product_id_foreign');
+			$table -> dropColumn('product_id');
 		});
 		Schema::drop('products');
 	}

@@ -13,9 +13,9 @@ class CreateBidsTable extends Migration {
 	public function up()
 	{
 		Schema::create('bids', function( $table ){
-			$table -> increment('id');
-			$table -> integer('product_id');
-			$table -> integer('user_id');
+			$table -> increments('id');
+			//$table -> integer('product_id');
+			//$table -> integer('user_id');
 			$table -> float('bid');
 			$table -> timestamps();
 		});

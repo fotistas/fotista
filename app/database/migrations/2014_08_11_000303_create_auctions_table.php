@@ -13,7 +13,7 @@ class CreateAuctionsTable extends Migration {
 	public function up()
 	{
 		Schema::create('auctions', function( $table ){
-			$table -> increment('id');
+			$table -> increments('id');
 			$table -> text('products');
 			$table -> dateTime('start');
 			$table -> dateTime('end');

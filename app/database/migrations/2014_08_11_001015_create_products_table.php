@@ -13,7 +13,7 @@ class CreateProductsTable extends Migration {
 	public function up()
 	{
 		Schema::create('products', function( $table ){
-			$table -> increment('id');
+			$table -> increments('id');
 			$table -> string('name'); // VARCHAR(255)
 			$table -> text('description'); // TEXT
 			$table -> enum('type', array('simple', 'auction'));

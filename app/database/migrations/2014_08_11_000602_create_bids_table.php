@@ -14,8 +14,8 @@ class CreateBidsTable extends Migration {
 	{
 		Schema::create('bids', function( $table ){
 			$table -> increments('id');
-			//$table -> integer('product_id');
-			//$table -> integer('user_id');
+			// $table -> integer('product_id'); //-> I will add it with creating of products table
+			// $table -> integer('user_id'); //-> I will add it with creating of users table
 			$table -> float('bid');
 			$table -> timestamps();
 		});

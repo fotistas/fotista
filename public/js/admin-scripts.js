@@ -14,10 +14,12 @@ $(document).ready(function(){
 
 	change_view_by_type( product_type );
 
-});
 
-$( document ).on('change','#thumbnail' , function(){
-	console.log( $('#thumbnail') );
+	$( '#save_product' ).click(function(){
+		console.log( 'save product' );
+	});
+
+
 });
 
 function change_view_by_type ( product_type ) {
@@ -37,6 +39,16 @@ function change_view_by_type ( product_type ) {
 		});
 	}
 }
+
+
+$( document ).on('change','#thumbnail' , function(){
+	console.log( $('#thumbnail') );
+});
+
+
+
+
+
 
 
 

@@ -22,6 +22,11 @@ class AdminController extends BaseController {
 		return View::make('admin.product', $this -> data );
 	}
 
+	public function postNewproduct()
+	{
+		$product = Product::create( Input::all() );
+	}
+
 	public function getProducts()
 	{
 		$this -> data['title'] = 'Products';

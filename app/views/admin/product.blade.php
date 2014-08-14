@@ -87,7 +87,7 @@
 					</div>
 					<div class="row">
 						<div class="float_left">
-							<button>Save</button>
+							<button id="save_product">Save</button>
 						</div>
 						<div class="float_right">
 							<a href="#" class="danger">

@@ -33,7 +33,9 @@ class AdminController extends BaseController {
 		$this -> data['title_icon'] = 'fa-shopping-cart';
 		$this -> data['active'] = 'products';
 
-		return View::make('admin.products', $this -> data );
+		$products = Product::all();
+
+		return View::make('admin.products', $this -> data ) -> with('products', $products);
 	}
 
 }

@@ -16,7 +16,7 @@ $(document).ready(function(){
 
 
 	$( '#save_product' ).click(function(){
-		console.log( 'save product' );
+		$( '#product-form' ).submit();
 	});
 
 

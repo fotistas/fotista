@@ -6,7 +6,7 @@
 
 		<div class="col-3-4">
 
-			{{ Form::open(array('url' => '', 'method' => 'POST')) }}
+			{{ Form::open(array('url' => 'admin/newproduct', 'method' => 'POST', 'id' => 'product-form')) }}
 
 				<div id="product-form" class="form">
 
@@ -49,9 +49,9 @@
 
 						<div class="col-1-3">
 							<div class="simple-product-field">
-								{{ Form::label('salep_price', 'Sale price:') }}
+								{{ Form::label('sale_price', 'Sale price:') }}
 								<span class="input-wrap input-text-wrap">
-									{{ Form::input('number', 'salep_price', '', array('name' => 'salep_price', 'placeholder' => 'Sale price') ) }}
+									{{ Form::input('number', 'sale_price', '', array('name' => 'sale_price', 'placeholder' => 'Sale price') ) }}
 								</span>
 							</div>
 							<div class="auction-field">

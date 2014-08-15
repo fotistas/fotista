@@ -19,6 +19,20 @@ $(document).ready(function(){
 		$( '#product-form' ).submit();
 	});
 
+	$('#delete_product').click(function(e){
+		e.preventDefault();
+		var url = document.URL;
+		var data = $('#product-form').serialize();
+		$.ajax({
+				type: "DELETE",
+				url: url,
+				data: data
+			})
+			.done(function( msg ) {
+				window.location.href = msg + 'Product deleted!';
+			});
+	});
+
 
 });
 

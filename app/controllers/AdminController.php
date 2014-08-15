@@ -11,6 +11,9 @@ class AdminController extends BaseController {
 		return View::make('admin.home', $this -> data );
 	}
 
+	/*
+	 *	Get existing product
+	 */
 	public function getProduct($id = 0)
 	{
 		$this -> data['title'] = 'Products';
@@ -34,20 +37,54 @@ class AdminController extends BaseController {
 		return View::make('admin.product', $this -> data ) -> with( 'product', $product );
 	}
 
+	/*
+	 *	Creating new product
+	 */
 	public function postProduct()
 	{
 		$product = Product::create( Input::all() );
+
+		return Redirect::to('admin/product/' . $product->id)
+					->with('message', 'Successfully created product!');
+	}
+
+	/*
+	 *	Update existing product
+	 */
+	public function putProduct( $id )
+	{
+		$product = Product::find($id);
+
+		$product -> update(Input::all());
+
+		return Redirect::to('admin/product/' . $product->id)
+					->with('message', 'Successfully updated product!');
+	}
+
+	/*
+	 *	Delete product
+	 */
+	public function deleteProduct( $id )
+	{
+		$product = Product::find($id);
+		
+		$product -> delete();
+
+		return URL::to('admin/products');
 	}
 
 	/*
 	 *	Get list of all products
 	 */
-	public function getProducts()
+	public function getProducts( $message = '' )
 	{
 		$this -> data['title'] = 'Products';
 		$this -> data['title_icon'] = 'fa-shopping-cart';
 		$this -> data['active'] = 'products';
 		$this -> data['currency'] = Product::get_currency_symbol();
+
+		if( $message != '' ) Session::put('message', $message);
+			else Session::put('message', 'false');
 
 		$products = Product::all();
 		$products_list = array();

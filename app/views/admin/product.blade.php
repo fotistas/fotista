@@ -90,7 +90,7 @@
 							<button id="save_product">Save</button>
 						</div>
 						<div class="float_right">
-							<a href="#" class="danger">
+							<a href="#" id="delete_product" class="danger">
 								Delete
 							</a>
 						</div>

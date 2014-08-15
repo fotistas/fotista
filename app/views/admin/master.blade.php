@@ -68,6 +68,11 @@
 		</div> <!-- /admin-top-menu -->
 
 		<div class="content">
+			@if( Session::has('message') && Session::get('message') != 'false' )
+				<div class="alert alert-success">
+				{{Session::get('message')}}
+				</div>
+			@endif
 
 			@yield('content')
 

@@ -190,6 +190,16 @@ a.danger {
 
 /*------------- Content -----------------*/
 
+.alert.alert-success {
+	background: rgba(255, 255, 255, 0.87);
+	margin-bottom: 10px;
+	padding: 10px;
+	border-left: 3px solid rgb(111, 195, 111);
+	box-shadow: 1px 1px 1px rgb(175, 175, 175);
+	border-radius: 5px;
+	color: rgb(112, 112, 112);
+}
+
 #admin-main-content-container .content {
 	padding: 0 10px;
 	padding-top: 10px;

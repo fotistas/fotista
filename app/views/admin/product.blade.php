@@ -42,7 +42,7 @@
 							<div class="auction-field">
 								{{ Form::label('opening_bid', 'Opening bid:') }}
 								<span class="input-wrap input-text-wrap">
-									{{ Form::input('number', 'opening_bid', null, array('name' => 'opening_bid', 'placeholder' => 'Price') ) }}
+									{{ Form::input('number', 'opening_bid', null, array('name' => 'opening_bid', 'placeholder' => 'Opening bid') ) }}
 								</span>
 							</div>
 						</div> <!-- /col-1-3 -->

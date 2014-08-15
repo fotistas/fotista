@@ -13,7 +13,7 @@
 
 Route::controller('/admin', 'AdminController');
 
-Route::resource('/product', 'ProductController');
+Route::controller('/store', 'ProductController');
 
 Route::controller('/', 'HomeController');
 

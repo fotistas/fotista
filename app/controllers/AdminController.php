@@ -24,6 +24,7 @@ class AdminController extends BaseController {
 			$this -> data['subtitle'] = 'Add new product';
 			$this -> data['method'] = 'POST';
 			$this -> data['type'] = 'simple';
+			$this -> data['thumbnail'] = '';
 
 			$product = (object) array( 'id' => '' );
 		} else {
@@ -33,9 +34,14 @@ class AdminController extends BaseController {
 			$product = Product::find($id);
 			$this -> data['type'] = $product -> type;
 
-			$image = Image::find( $product -> picture );
-			if ( $image -> images ) $picture = json_decode( $image -> images );
-			$this -> data['thumbnail'] = $picture -> medium;
+			$image = Image::find( $product -> image_id );
+			if ( is_object( $image ) && $image -> images ) {
+				$picture = json_decode( $image -> images );
+				$this -> data['thumbnail'] = property_exists( $product, 'medium' ) ? $picture -> medium : $picture -> full;
+			} else {
+				$this -> data['thumbnail'] = '';
+			}
+				
 		}
 
 		return View::make('admin.product', $this -> data ) -> with( 'product', $product );
@@ -92,17 +98,17 @@ class AdminController extends BaseController {
 
 		$products = Product::all();
 		$products_list = array();
+
 		// I need to add excerpt to outcoming array
 		foreach ( $products as $product) {
-			$limit = 20; // keep only first 20 words
-			if (str_word_count($product['description'], 0) > $limit) {
-				$words = str_word_count($product['description'], 2);
-				$pos = array_keys($words);
-				$text = substr($product['description'], 0, $pos[$limit]) . '...';
-			} else {
-				$text = $product['description'];
+			$product['excerpt'] = trim_words($product['description']);
+
+			$image = Image::find( $product['image_id'] );
+			if ( is_object( $image ) && $image -> images ) {
+				$image = json_decode($image -> images);
+				$product['thumbnail'] = $image -> medium;
 			}
-			$product['excerpt'] = $text;
+
 			$products_list[] = $product;
 		}
 
@@ -189,7 +195,7 @@ class AdminController extends BaseController {
 			$images -> save();
 
 			$product = Product::find( $id );
-			$product -> picture = $images->id;
+			$product -> image_id = $images->id;
 			$product -> save();
 
 			return Redirect::to('admin/product/' . $id)

@@ -18,6 +18,7 @@
 		@foreach($products as $product)
 			<tr id="product-{{ $product -> id }}">
 				<td class="image">
+					<img src="{{ $product -> thumbnail }}" />
 				</td>
 				<td class="name">
 					{{ $product -> name }}

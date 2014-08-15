@@ -236,6 +236,9 @@ button:hover, .btn:hover {
 .product-list .product .title {
 	font-weight: 700;
 	padding: 8px 0;
+	overflow: hidden;
+	height: 33px;
+	line-height: 21px;
 }
 
 .product-list .product .thumbnail {

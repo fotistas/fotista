@@ -12,7 +12,7 @@
 		  @else
 			<div class="product col-1-4">
 		  @endif
-				<a href="{{ URL::to( 'product/' . $product -> id ) }}">
+				<a href="{{ URL::to( 'store/product/' . $product -> id ) }}">
 					<div class="thumbnail transition">
 						<div class="img-wrap">
 							<img src="{{ $product -> thumbnail }}" />

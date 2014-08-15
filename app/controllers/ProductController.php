@@ -22,4 +22,22 @@ class ProductController extends BaseController {
 
 		return View::make('store', $this -> data) -> with('products', $products_list);
 	}
+
+	/*
+	 *	Show product page
+	 */
+	public function getProduct( $id )
+	{
+		$this -> data['currency'] = Product::get_currency_symbol();
+
+		$product = Product::find( $id );
+
+		$image = Image::find( $product['image_id'] );
+		if ( is_object( $image ) && $image -> images ) {
+			$image = json_decode($image -> images);
+			$product['large'] = $image -> full;
+		}
+
+		return View::make('product', $this -> data) -> with('product', $product);
+	}
 }

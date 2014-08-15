@@ -23,7 +23,7 @@
 			<li class="{{ $active == 'products' ? 'active' : '' }} has-children">
 				<a href="{{ URL::to('admin/products'); }}" class=""><span class="fa fa-shopping-cart"></span> Products</a>
 				<ul class="menu sub-menu">
-					<li><a href="{{ URL::to('admin/newproduct'); }}">Add Product</a></li>
+					<li><a href="{{ URL::to('admin/product'); }}">Add Product</a></li>
 					<li><a href="{{ URL::to('admin/products'); }}">Products list</a></li>
 				</ul>
 			</li>

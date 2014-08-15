@@ -8,4 +8,8 @@ class Product extends Eloquent {
 		return $this->hasMany('Bid');
 	}
 
+	public static function get_currency_symbol() {
+		return '$';
+	}
+
 }

@@ -6,7 +6,7 @@
 
 		<div class="col-3-4">
 
-			{{ Form::open(array('url' => 'admin/newproduct', 'method' => 'POST', 'id' => 'product-form')) }}
+			{{ Form::model($product, array('url' => 'admin/product/' . $product -> id, 'method' => $method, 'id' => 'product-form')) }}
 
 				<div id="product-form" class="form">
 
@@ -15,13 +15,13 @@
 					<div class="row">
 						{{ Form::label('name', 'Product name') }}
 						<span class="input-wrap input-text-wrap">
-							{{ Form::text('name', '', array('name' => 'name', 'placeholder' => 'Product name') ) }}
+							{{ Form::text('name', null, array('name' => 'name', 'placeholder' => 'Product name') ) }}
 						</span>
 					</div>
 
 					<div class="row">
 						{{ Form::label('description', 'Description') }}
-						{{ Form::textarea('description', '', array('name' => 'description') ) }}
+						{{ Form::textarea('description', null, array('name' => 'description') ) }}
 					</div>
 
 				</div> <!-- /product-form -->
@@ -35,14 +35,14 @@
 							<div class="simple-product-field">
 								{{ Form::label('price', 'Price:') }}
 								<span class="input-wrap input-text-wrap">
-									{{ Form::input('number', 'price', '', array('name' => 'price', 'placeholder' => 'Price') ) }}
+									{{ Form::input('number', 'price', null, array('name' => 'price', 'placeholder' => 'Price') ) }}
 								</span>
 							</div>
 
 							<div class="auction-field">
 								{{ Form::label('opening_bid', 'Opening bid:') }}
 								<span class="input-wrap input-text-wrap">
-									{{ Form::input('number', 'opening_bid', '', array('name' => 'opening_bid', 'placeholder' => 'Price') ) }}
+									{{ Form::input('number', 'opening_bid', null, array('name' => 'opening_bid', 'placeholder' => 'Price') ) }}
 								</span>
 							</div>
 						</div> <!-- /col-1-3 -->
@@ -51,7 +51,7 @@
 							<div class="simple-product-field">
 								{{ Form::label('sale_price', 'Sale price:') }}
 								<span class="input-wrap input-text-wrap">
-									{{ Form::input('number', 'sale_price', '', array('name' => 'sale_price', 'placeholder' => 'Sale price') ) }}
+									{{ Form::input('number', 'sale_price', null, array('name' => 'sale_price', 'placeholder' => 'Sale price') ) }}
 								</span>
 							</div>
 							<div class="auction-field">

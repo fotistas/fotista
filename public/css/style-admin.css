@@ -259,3 +259,46 @@ a.danger {
 #upload-thumbnail-form {
 	display: none;
 }
+
+
+/*------------- Products ----------------*/
+#products_list {
+	border-collapse: collapse;
+}
+
+#products_list .name {
+	width: 20%;
+}
+
+#products_list .excerpt {
+	width: 40%;
+}
+
+#products_list td.name,
+#products_list td.excerpt {
+	padding-right: 5px;
+	padding-left: 5px;
+}
+
+#products_list .price,
+#products_list .sale_price,
+#products_list .opening_bid,
+#products_list .type,
+#products_list .updated_at,
+#products_list .edit {
+	text-align: center;
+}
+
+#products_list tr th,
+#products_list tr td {
+	padding: 5px 0;
+	border-bottom: 1px solid rgb(204, 204, 204);
+}
+
+#products_list tr:nth-of-type(2n) td {
+	background: rgba(255,255,255,0.3);
+}
+
+#products_list tr:hover td {
+	background: rgba(255,255,255,0.7);
+}

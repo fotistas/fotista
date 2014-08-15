@@ -104,12 +104,19 @@
 				</div>
 				<div class="content">
 					<div class="thumbnail">
-						<a href="#" id="upload-thumbnail">Add product image</a>
+						@if ( $thumbnail )
+							<img src = "{{ $thumbnail }}" />
+						@endif
 					</div>
+					@if ( $thumbnail )
+						<a href="#" id="upload-thumbnail">Change product image</a>
+					@else
+						<a href="#" id="upload-thumbnail">Add product image</a>
+					@endif
 
 					<!-- http://clivern.com/how-to-create-file-upload-with-laravel/ -->
 
-					{{ Form::open(array('url'=>'form-submit', 'id' => 'upload-thumbnail-form', 'files'=>true)) }}
+					{{ Form::open(array('url'=>'admin/upload/' . $product->id, 'method' => 'POST', 'id' => 'upload-thumbnail-form', 'files'=>true)) }}
 					{{ Form::file('file', array('id'=>'thumbnail','class'=>'')) }}
 					{{ Form::close() }}
 

@@ -29,7 +29,7 @@ $(document).ready(function(){
 				data: data
 			})
 			.done(function( msg ) {
-				window.location.href = msg + 'Product deleted!';
+				window.location.href = msg + '/Product deleted!';
 			});
 	});
 
@@ -55,10 +55,9 @@ function change_view_by_type ( product_type ) {
 }
 
 
-$( document ).on('change','#thumbnail' , function(){
-	console.log( $('#thumbnail') );
+$( document ).on('change','#thumbnail' , function( e ){
+	$( '#upload-thumbnail-form' ).submit();
 });
-
 
 
 

@@ -1,4 +1,3 @@
-$(document).ready(function(){
 
 	var product_type = $('#type').val();
 
@@ -33,8 +32,6 @@ $(document).ready(function(){
 			});
 	});
 
-
-});
 
 function change_view_by_type ( product_type ) {
 	if ( product_type == 'auction' ) {

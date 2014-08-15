@@ -7,9 +7,6 @@
 
 	<link rel="stylesheet" type="text/css" href="{{ URL::to('css/style-admin.css') }}">
 
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-	<script src="{{ URL::to('js/admin-scripts.js') }}"></script>
 </head>
 <body>
 
@@ -23,25 +20,25 @@
 			<li class="{{ $active == 'products' ? 'active' : '' }} has-children">
 				<a href="{{ URL::to('admin/products'); }}" class=""><span class="fa fa-shopping-cart"></span> Products</a>
 				<ul class="menu sub-menu">
-					<li><a href="{{ URL::to('admin/product'); }}">Add Product</a></li>
-					<li><a href="{{ URL::to('admin/products'); }}">Products list</a></li>
+					<li><a href="{{ URL::to('admin/product') }}">Add Product</a></li>
+					<li><a href="{{ URL::to('admin/products') }}">Products list</a></li>
 				</ul>
 			</li>
 			<li class="{{ $active == 'auction' ? 'active' : '' }}">
-				<a href="#" class=""><span class="fa fa-legal"></span> Auction</a>
+				<a href="{{ URL::to('admin/auction'); }}" class=""><span class="fa fa-legal"></span> Auction</a>
 			</li>
 			<li class="{{ $active == 'blog' ? 'active' : '' }} has-children">
 				<a href="#" class=""><span class="fa fa-pencil"></span> Blog</a>
 				<ul class="menu sub-menu">
-					<li><a href="{{ URL::to('admin/newpost'); }}">Add New Post</a></li>
-					<li><a href="{{ URL::to('admin/posts'); }}">Posts list</a></li>
+					<li><a href="{{ URL::to('admin/newpost') }}">Add New Post</a></li>
+					<li><a href="{{ URL::to('admin/posts') }}">Posts list</a></li>
 				</ul>
 			</li>
 			<li class="{{ $active == 'users' ? 'active' : '' }} has-children">
 				<a href="#" class=""><span class="fa fa-users"></span> Users</a>
 				<ul class="menu sub-menu">
-					<li><a href="{{ URL::to('admin/newuser'); }}">Add New User</a></li>
-					<li><a href="{{ URL::to('admin/users'); }}">Users list</a></li>
+					<li><a href="{{ URL::to('admin/newuser') }}">Add New User</a></li>
+					<li><a href="{{ URL::to('admin/users') }}">Users list</a></li>
 				</ul>
 			</li>
 		</ul>
@@ -110,6 +107,12 @@
 
 		</div> <!-- /container -->
 	</div>
+
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="{{ URL::to('js/jquery-ui.min.js') }}"></script>
+
+	<script src="{{ URL::to('js/admin-scripts.js') }}"></script>
 
 </body>
 </html>

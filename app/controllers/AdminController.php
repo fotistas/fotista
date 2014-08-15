@@ -11,6 +11,8 @@ class AdminController extends BaseController {
 		return View::make('admin.home', $this -> data );
 	}
 
+	/*---------------------------------------------------------*/
+
 	/*
 	 *	Get existing product
 	 */
@@ -47,6 +49,8 @@ class AdminController extends BaseController {
 		return View::make('admin.product', $this -> data ) -> with( 'product', $product );
 	}
 
+	/*---------------------------------------------------------*/
+
 	/*
 	 *	Creating new product
 	 */
@@ -57,6 +61,8 @@ class AdminController extends BaseController {
 		return Redirect::to('admin/product/' . $product->id)
 					->with('message', 'Successfully created product!');
 	}
+
+	/*---------------------------------------------------------*/
 
 	/*
 	 *	Update existing product
@@ -71,6 +77,8 @@ class AdminController extends BaseController {
 					->with('message', 'Successfully updated product!');
 	}
 
+	/*---------------------------------------------------------*/
+
 	/*
 	 *	Delete product
 	 */
@@ -82,6 +90,8 @@ class AdminController extends BaseController {
 
 		return URL::to('admin/products');
 	}
+
+	/*---------------------------------------------------------*/
 
 	/*
 	 *	Get list of all products
@@ -114,6 +124,8 @@ class AdminController extends BaseController {
 
 		return View::make('admin.products', $this -> data ) -> with('products', $products_list);
 	}
+
+	/*---------------------------------------------------------*/
 
 	/*
 	 *	Handling product image upload
@@ -203,6 +215,24 @@ class AdminController extends BaseController {
 		} else {
 			return Response::json('error', 400);
 		}
+	}
+
+
+	/*---------------------------------------------------------*/
+	/*--------------------> Auction <---------------------------*/
+
+
+	/*
+	 * Get Auction page
+	 */
+	public function getAuction()
+	{
+
+		$this -> data['title'] = 'Auction';
+		$this -> data['title_icon'] = 'fa-legal';
+		$this -> data['active'] = 'auction';
+
+		return View::make('admin/auction', $this -> data );
 	}
 
 }

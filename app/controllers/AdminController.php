@@ -230,7 +230,7 @@ class AdminController extends BaseController {
 	/*
 	 * Get Auction page
 	 */
-	public function getAuction()
+	public function getAuction( $id = 2 )
 	{
 
 		$this -> data['title'] = 'Auction';
@@ -260,6 +260,35 @@ class AdminController extends BaseController {
 
 		return View::make('admin/auction', $this -> data )
 				-> with( 'auctions', $auctions_list );
+	}
+
+
+	/*
+	 * Create New Auction in database
+	 */
+	public function postAuction()
+	{
+		$auction = Auction::create( Input::all() );
+
+		return 'success';
+	}
+
+	/*
+	 * Update Auction in database
+	 */
+	public function putAuction( $id )
+	{
+		$put = Input::all();
+
+		$auction = Auction::find( $id );
+		// for some reason update() is not working here
+
+		$auction -> products = $put['products'];
+		$auction -> start = $put['start'];
+
+		$auction -> save();
+
+		return 'success';
 	}
 
 }

@@ -12,7 +12,7 @@
 					<h3>Free auction products</h3>
 					<ul id="free-auctions" class="sortable auction connectedLists">
 						@foreach( $auctions as $auction )
-							<li>
+							<li id="auction-{{ $auction -> id }}">
 								<div class="thumbnail">
 									<img src="{{ $auction -> thumbnail }}" />
 								</div>
@@ -27,7 +27,7 @@
 					<h3>Auction list</h3>
 					<ul id="auctions-list" class="sortable auction connectedLists">
 						@foreach( $auctions as $auction )
-							<li>
+							<li id="auction-{{ $auction -> id }}">
 								<div class="thumbnail">
 									<img src="{{ $auction -> thumbnail }}" />
 								</div>
@@ -35,6 +35,7 @@
 							</li>
 						@endforeach
 					</ul>
+					<input type="hidden" id="auctions-list-input" value="" />
 
 				</div> <!-- /col-1-2 -->
 
@@ -42,10 +43,16 @@
 
 			<div class="row section">
 				<div class="row">
-					Auction start date: <input type="text" />
+					Auction start date and time: <input id="auction-start-date" type="text" />
 				</div>
 				<div class="row">
-					<button id="save_product">Save</button>
+					<button id="save_auction">Save</button>
+				</div>
+				<div class="row">
+					<div id="error-message">
+					</div>
+					<div id="success-message">
+					</div>
 				</div>
 			</div> <!-- /section -->
 

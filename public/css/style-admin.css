@@ -362,3 +362,28 @@ ul.sortable.auction li.ui-sortable-placeholder {
 	visibility: visible !important;
 	border: 1px dashed #aaaaaa;
 }
+
+#auction-start-date {
+	padding: 5px 6px;
+	border-radius: 3px;
+	border: 1px solid rgb(168, 168, 168);
+	color: rgb(73, 73, 73);
+}
+
+#error-message,
+#success-message {
+	padding: 6px;
+	margin: 5px 0;
+	border-radius: 3px;
+	display: none;
+}
+
+#error-message {
+	border-left: 3px solid rgb(209, 101, 101);
+	background: rgb(255, 231, 231);
+}
+
+#success-message {
+	border-left: 3px solid rgb(92, 177, 92);
+	background: rgb(224, 253, 224);
+}

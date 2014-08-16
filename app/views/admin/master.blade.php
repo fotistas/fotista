@@ -4,6 +4,7 @@
 	<title>Admin - eCommerce Auction Webstore</title>
 	<link rel="stylesheet" type="text/css" href="{{ URL::to('css/grid.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ URL::to('css/font-awesome.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ URL::to('css/jquery.datetimepicker.css') }}">
 
 	<link rel="stylesheet" type="text/css" href="{{ URL::to('css/style-admin.css') }}">
 
@@ -109,8 +110,9 @@
 	</div>
 
 
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="{{ URL::to('js/jquery.min.js') }}"></script>
 	<script src="{{ URL::to('js/jquery-ui.min.js') }}"></script>
+	<script src="{{ URL::to('js/jquery.datetimepicker.js') }}"></script>
 
 	<script src="{{ URL::to('js/admin-scripts.js') }}"></script>
 

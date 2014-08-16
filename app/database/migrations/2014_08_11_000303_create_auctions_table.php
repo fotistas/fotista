@@ -17,7 +17,6 @@ class CreateAuctionsTable extends Migration {
 			$table -> string('name'); // VARCHAR(255)
 			$table -> text('products');
 			$table -> dateTime('start');
-			$table -> dateTime('end');
 			$table -> text('description');
 		});
 	}

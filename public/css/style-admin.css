@@ -205,7 +205,8 @@ a.danger {
 	padding-top: 10px;
 }
 
-#admin-main-content-container .form {
+#admin-main-content-container .form,
+#auctions-sorting .section {
 	background: white;
 	padding: 15px;
 	border-radius: 3px;
@@ -336,17 +337,18 @@ ul.sortable {
 ul.sortable.auction li {
 	padding: 5px 6px;
 	border: 1px solid rgb(109, 174, 211);
+	border-radius: 3px;
 	color: rgb(34, 49, 61);
 	margin-bottom: 5px;
 }
 
 ul.sortable.auction li:hover {
 	cursor: pointer;
-	background: rgba(255, 255, 255, 0.5);
+	background: rgba(230, 230, 230, 0.5);
 }
 
 ul.sortable.auction li .thumbnail {
-	width: 50px;
+	width: 40px;
 	height: auto;
 	display: inline-block;
 }
@@ -354,4 +356,9 @@ ul.sortable.auction li .thumbnail {
 ul.sortable.auction li .thumbnail img {
 	width: 100%;
 	height: auto;
+}
+
+ul.sortable.auction li.ui-sortable-placeholder {
+	visibility: visible !important;
+	border: 1px dashed #aaaaaa;
 }

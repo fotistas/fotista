@@ -6,7 +6,7 @@
 
 		<div class="col-1-2" id="auctions-sorting">
 
-			<div class="row">
+			<div class="row section">
 
 				<div class="col-1-2">
 					<h3>Free auction products</h3>
@@ -38,7 +38,16 @@
 
 				</div> <!-- /col-1-2 -->
 
-			</div> <!-- /row -->
+			</div> <!-- /section -->
+
+			<div class="row section">
+				<div class="row">
+					Auction start date: <input type="text" />
+				</div>
+				<div class="row">
+					<button id="save_product">Save</button>
+				</div>
+			</div> <!-- /section -->
 
 		</div> <!-- /auctions-sorting -->
 

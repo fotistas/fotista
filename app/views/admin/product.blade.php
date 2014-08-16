@@ -83,7 +83,9 @@
 						Post status: published
 					</div>
 					<div class="date">
-						Post date: 2014-10-07 10:48
+						@if ( property_exists( $product, 'updated_at' ) )
+							Updated at: {{ $product -> updated_at }}
+						@endif
 					</div>
 					<div class="row">
 						<div class="float_left">

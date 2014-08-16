@@ -106,20 +106,25 @@ class AdminController extends BaseController {
 		if( $message != '' ) Session::put('message', $message);
 			else Session::put('message', 'false');
 
-		$products = Product::all();
+		$products = DB::select('SELECT * FROM products
+								INNER JOIN images
+								ON products.image_id = images.id');
+
 		$products_list = array();
 
 		// I need to add excerpt to outcoming array
 		foreach ( $products as $product) {
+			$product = (array) $product;
 			$product['excerpt'] = trim_words($product['description']);
 
-			$image = Image::find( $product['image_id'] );
-			if ( is_object( $image ) && $image -> images ) {
-				$image = json_decode($image -> images);
+			if ( array_key_exists( 'images', $product ) && $product['images'] ) {
+				$image = json_decode( $product['images'] );
 				$product['thumbnail'] = $image -> medium;
+			} else {
+				$product['thumbnail'] = '';
 			}
 
-			$products_list[] = $product;
+			$products_list[] = (object) $product;
 		}
 
 		return View::make('admin.products', $this -> data ) -> with('products', $products_list);
@@ -232,7 +237,29 @@ class AdminController extends BaseController {
 		$this -> data['title_icon'] = 'fa-legal';
 		$this -> data['active'] = 'auction';
 
-		return View::make('admin/auction', $this -> data );
+		$auctions = DB::select('SELECT * FROM products
+								INNER JOIN images
+								ON products.image_id = images.id
+								AND products.type = ?', array('auction'));
+
+		$auctions_list = array();
+
+		// I need to add excerpt to outcoming array
+		foreach ( $auctions as $auction) {
+			$auction = (array) $auction;
+
+			if ( array_key_exists( 'images', $auction ) && $auction['images'] ) {
+				$image = json_decode( $auction['images'] );
+				$auction['thumbnail'] = $image -> medium;
+			} else {
+				$auction['thumbnail'] = '';
+			}
+
+			$auctions_list[] = (object) $auction;
+		}
+
+		return View::make('admin/auction', $this -> data )
+				-> with( 'auctions', $auctions_list );
 	}
 
 }

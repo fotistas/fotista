@@ -1,36 +1,38 @@
 
-	var product_type = $('#type').val();
+/*--------------- Products ---------------------*/
 
-	$('#upload-thumbnail').click(function(e){
-		e.preventDefault();
-		$('#thumbnail').click();
-	});
+var product_type = $('#type').val();
 
-	$('#type').on('change', function() {
-		product_type = this.value;
-		change_view_by_type( product_type );
-	});
+$('#upload-thumbnail').click(function(e){
+	e.preventDefault();
+	$('#thumbnail').click();
+});
 
+$('#type').on('change', function() {
+	product_type = this.value;
 	change_view_by_type( product_type );
+});
+
+change_view_by_type( product_type );
 
 
-	$( '#save_product' ).click(function(){
-		$( '#product-form' ).submit();
-	});
+$( '#save_product' ).click(function(){
+	$( '#product-form' ).submit();
+});
 
-	$('#delete_product').click(function(e){
-		e.preventDefault();
-		var url = document.URL;
-		var data = $('#product-form').serialize();
-		$.ajax({
-				type: "DELETE",
-				url: url,
-				data: data
-			})
-			.done(function( msg ) {
-				window.location.href = msg + '/Product deleted!';
-			});
-	});
+$('#delete_product').click(function(e){
+	e.preventDefault();
+	var url = document.URL;
+	var data = $('#product-form').serialize();
+	$.ajax({
+			type: "DELETE",
+			url: url,
+			data: data
+		})
+		.done(function( msg ) {
+			window.location.href = msg + '/Product deleted!';
+		});
+});
 
 
 function change_view_by_type ( product_type ) {
@@ -51,14 +53,16 @@ function change_view_by_type ( product_type ) {
 	}
 }
 
-
 $( document ).on('change','#thumbnail' , function( e ){
 	$( '#upload-thumbnail-form' ).submit();
 });
 
 
 
+/*--------------- Auction ---------------------*/
 
-
+$( "#free-auctions, #auctions-list" ).sortable({
+	connectWith: ".connectedLists"
+}).disableSelection();
 
 

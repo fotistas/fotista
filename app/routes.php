@@ -17,16 +17,3 @@ Route::controller('/store', 'ProductController');
 
 Route::controller('/', 'HomeController');
 
-
-
-
-
-
-
-
-
-
-Route::get('/hello', function()
-{
-	return View::make('hello');
-});

@@ -287,7 +287,7 @@ a.danger {
 }
 
 #products_list .name {
-	width: 20%;
+	width: 15%;
 }
 
 #products_list .excerpt {
@@ -321,4 +321,37 @@ a.danger {
 
 #products_list tr:hover td {
 	background: rgba(255,255,255,0.7);
+}
+
+
+/*------------- Auction ----------------*/
+
+ul.sortable {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	min-height: 30px;
+}
+
+ul.sortable.auction li {
+	padding: 5px 6px;
+	border: 1px solid rgb(109, 174, 211);
+	color: rgb(34, 49, 61);
+	margin-bottom: 5px;
+}
+
+ul.sortable.auction li:hover {
+	cursor: pointer;
+	background: rgba(255, 255, 255, 0.5);
+}
+
+ul.sortable.auction li .thumbnail {
+	width: 50px;
+	height: auto;
+	display: inline-block;
+}
+
+ul.sortable.auction li .thumbnail img {
+	width: 100%;
+	height: auto;
 }

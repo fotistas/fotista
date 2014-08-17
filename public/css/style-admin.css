@@ -235,6 +235,10 @@ a.danger {
 	height: 300px;
 }
 
+#admin-main-content-container #auction-form .form textarea {
+	height: 150px;
+}
+
 #product-type {
 	width: 100%;
 	border: 1px solid silver;
@@ -276,6 +280,7 @@ a.danger {
 #products_list {
 	border-collapse: collapse;
 	font-size: 13px;
+	min-width: 80%;
 }
 
 #products_list .image {
@@ -306,8 +311,13 @@ a.danger {
 #products_list .opening_bid,
 #products_list .type,
 #products_list .updated_at,
-#products_list .edit {
+#products_list .edit,
+#products_list .start {
 	text-align: center;
+}
+
+#products_list .start {
+	width: 100px;
 }
 
 #products_list tr th,
@@ -363,7 +373,7 @@ ul.sortable.auction li.ui-sortable-placeholder {
 	border: 1px dashed #aaaaaa;
 }
 
-#auction-start-date {
+#start {
 	padding: 5px 6px;
 	border-radius: 3px;
 	border: 1px solid rgb(168, 168, 168);

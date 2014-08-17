@@ -66,7 +66,7 @@ var auction_list = [];
 /*
  *	List of products available to add to the next auction
  */
-$( "#free-auctions" ).sortable({
+$( "#available-products" ).sortable({
 	connectWith: ".connectedLists"
 }).disableSelection();
 
@@ -79,27 +79,30 @@ $( "#auctions-list" ).sortable({
 		auction_list = [];
 		$(this).find( 'li' ).each(function(){
 			var id = $(this).attr('id');
-			id = id.replace( 'auction-', '' );
+			id = id.replace( 'product-', '' );
 			auction_list.push( id );
 		});
+		$('#products').val( encodeURIComponent( JSON.stringify( auction_list ) ) );
 	}
 }).disableSelection();
 
 /*
  *	Auction date and time picker
  */
-$( '#auction-start-date' ).datetimepicker({
-	format:'Y-m-d H:i',
+$( '#start' ).datetimepicker({
+	format:'Y-m-d H:i:00',
 	mask: true,
 });
 
 /*
  *	Save auction data
  */
-$( '#save_auction' ).click(function(){
-	var auction_time = $('#auction-start-date').val() + ':00';
+$( '#save_auction' ).click(function(e){
+	e.preventDefault();
 
-	if ( auction_time == '____-__-__ __:__:00' ) {
+	var auction_time = $('#start').val();
+
+	if ( auction_time == '____-__-__ __:__:__' ) {
 		error_message( 'Please enter correct date and time for the auction' );
 		return false;
 	}
@@ -112,7 +115,20 @@ $( '#save_auction' ).click(function(){
 		error_message( 'Data & time of the auction are already in the past. Please pick correct one' );
 		return false;
 	}
+
+	if ( $('#products').val() == '' ) {
+		error_message( 'Choose products for the auction' );
+		return false;
+	}
+
+	if ( $('#name').val() == '' ) {
+		error_message( 'Auction should have a name' );
+		return false;
+	}
+
+	$('#auction-form').submit();
 	
+	/*
 	var data = {
 			products: JSON.stringify( auction_list ),
 			start: auction_time,
@@ -128,6 +144,7 @@ $( '#save_auction' ).click(function(){
 				success_message( 'Auction saved successfully!' );
 			}
 		});
+	*/
 });
 
 function error_message( msg ) {

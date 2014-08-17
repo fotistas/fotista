@@ -106,7 +106,7 @@ class AdminController extends BaseController {
 		if( $message != '' ) Session::put('message', $message);
 			else Session::put('message', 'false');
 
-		$products = DB::select('SELECT * FROM products
+		$products = DB::select('SELECT products.id, products.name, products.description, products.type, products.lang, products.price, products.sale_price, products.opening_bid, products.updated_at, images.images FROM products
 								INNER JOIN images
 								ON products.image_id = images.id');
 
@@ -231,36 +231,51 @@ class AdminController extends BaseController {
 	/*
 	 * Get Auction page
 	 */
-	public function getAuction( $id = 2 )
+	public function getAuction( $id = 0 )
 	{
 
 		$this -> data['title'] = 'Auction';
 		$this -> data['title_icon'] = 'fa-legal';
 		$this -> data['active'] = 'auction';
 
-		$auctions = DB::select('SELECT * FROM products
+		if ( $id == 0 ) {
+			$this -> data['subtitle'] = 'Add new auction';
+			$this -> data['method'] = 'POST';
+
+			$auction = (object) array( 'id' => '' );
+			$products_in_auction = array();
+		} else {
+			$this -> data['subtitle'] = 'Edit auction';
+			$this -> data['method'] = 'PUT';
+
+			$products_in_auction = array();
+		}
+
+		$available_products = DB::select('SELECT * FROM products
 								INNER JOIN images
 								ON products.image_id = images.id
+								AND products.auction_id = 0
 								AND products.type = ?', array('auction'));
 
-		$auctions_list = array();
+		$available_list = array();
 
-		// I need to add excerpt to outcoming array
-		foreach ( $auctions as $auction) {
-			$auction = (array) $auction;
+		foreach ( $available_products as $product) {
+			$product = (array) $product;
 
-			if ( array_key_exists( 'images', $auction ) && $auction['images'] ) {
-				$image = json_decode( $auction['images'] );
-				$auction['thumbnail'] = $image -> medium;
+			if ( array_key_exists( 'images', $product ) && $product['images'] ) {
+				$image = json_decode( $product['images'] );
+				$product['thumbnail'] = $image -> medium;
 			} else {
-				$auction['thumbnail'] = '';
+				$product['thumbnail'] = '';
 			}
 
-			$auctions_list[] = (object) $auction;
+			$available_list[] = (object) $product;
 		}
 
 		return View::make('admin/auction', $this -> data )
-				-> with( 'auctions', $auctions_list );
+				-> with( 'available_list', $available_list )
+				-> with( 'products_in_auction', $products_in_auction )
+				-> with( 'auction', $auction );
 	}
 
 
@@ -271,7 +286,8 @@ class AdminController extends BaseController {
 	{
 		$auction = Auction::create( Input::all() );
 
-		return 'success';
+		return Redirect::to('admin/auction/' . $auction->id)
+					->with('message', 'Successfully created auction!');
 	}
 
 	/*
@@ -290,6 +306,31 @@ class AdminController extends BaseController {
 		$auction -> save();
 
 		return 'success';
+	}
+
+	/*
+	 *	Get all auctions
+	 */
+	public function getAuctions()
+	{
+		$this -> data['title'] = 'Auction';
+		$this -> data['title_icon'] = 'fa-legal';
+		$this -> data['active'] = 'auction';
+
+		$auctions = DB::select('SELECT * FROM auctions');
+		$auctions_list = array();
+
+		foreach( $auctions as $auction ) {
+			$auction = (array) $auction;
+
+			$auction['excerpt'] = trim_words($auction['description']);
+			$auctions_list[] = (object) $auction;
+		}
+
+
+
+		return View::make('admin/auctions', $this -> data )
+				-> with( 'auctions', $auctions_list );
 	}
 
 }

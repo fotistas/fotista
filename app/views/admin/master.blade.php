@@ -25,8 +25,12 @@
 					<li><a href="{{ URL::to('admin/products') }}">Products list</a></li>
 				</ul>
 			</li>
-			<li class="{{ $active == 'auction' ? 'active' : '' }}">
-				<a href="{{ URL::to('admin/auction'); }}" class=""><span class="fa fa-legal"></span> Auction</a>
+			<li class="{{ $active == 'auction' ? 'active' : '' }} has-children">
+				<a href="{{ URL::to('admin/auctions'); }}" class=""><span class="fa fa-legal"></span> Auctions</a>
+				<ul class="menu sub-menu">
+					<li><a href="{{ URL::to('admin/auction') }}">Add Auction</a></li>
+					<li><a href="{{ URL::to('admin/auctions') }}">Auctions list</a></li>
+				</ul>
 			</li>
 			<li class="{{ $active == 'blog' ? 'active' : '' }} has-children">
 				<a href="#" class=""><span class="fa fa-pencil"></span> Blog</a>

@@ -215,6 +215,7 @@ class AdminController extends BaseController {
 			$product -> image_id = $images->id;
 			$product -> save();
 
+			// ToDo: It is not good solution, because if user make changes in text and then upload image without saving first, he will los all text changes
 			return Redirect::to('admin/product/' . $id)
 					->with('message', 'Successfully uploaded image');
 		} else {

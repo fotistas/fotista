@@ -17,10 +17,13 @@ class CreateProductsTable extends Migration {
 			$table -> string('name'); // VARCHAR(255)
 			$table -> text('description'); // TEXT
 			$table -> enum('type', array('simple', 'auction'));
+			$table -> enum('type', array('draft', 'publish', 'hidden'));
+			$table -> string('lang'); // VARCHAR(255)
 			$table -> float('price');
 			$table -> float('sale_price');
 			$table -> float('opening_bid');
-			$table -> string('picture'); // VARCHAR(255)
+			$table -> integer('auction_id') -> references('id') -> on('auctions');
+			$table -> integer('parent_id');
 			$table -> timestamps();
 		});
 

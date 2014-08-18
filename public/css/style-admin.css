@@ -316,6 +316,10 @@ a.danger {
 	text-align: center;
 }
 
+#products_list .products ul {
+	margin: 0;
+}
+
 #products_list .start {
 	width: 100px;
 }

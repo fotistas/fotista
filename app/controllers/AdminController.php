@@ -106,7 +106,7 @@ class AdminController extends BaseController {
 		if( $message != '' ) Session::put('message', $message);
 			else Session::put('message', 'false');
 
-		$products = DB::select('SELECT products.id, products.name, products.description, products.type, products.lang, products.price, products.sale_price, products.opening_bid, products.updated_at, images.images FROM products
+		$products = DB::select('SELECT products.*, images.images FROM products
 								INNER JOIN images
 								ON products.image_id = images.id');
 
@@ -243,15 +243,22 @@ class AdminController extends BaseController {
 			$this -> data['method'] = 'POST';
 
 			$auction = (object) array( 'id' => '' );
-			$products_in_auction = array();
+			$products_in_auction_raw = '';
 		} else {
 			$this -> data['subtitle'] = 'Edit auction';
 			$this -> data['method'] = 'PUT';
 
-			$products_in_auction = array();
+			$auction = Auction::find( $id );
+			$index_of_auction_products = json_decode( urldecode( $auction['products'] ) );
+
+			$products_in_auction_raw = DB::select('SELECT products.*, images.images FROM products
+										INNER JOIN images
+										ON products.image_id = images.id
+										AND products.auction_id = ?
+										AND products.type = ?', array($id, 'auction'));
 		}
 
-		$available_products = DB::select('SELECT * FROM products
+		$available_products = DB::select('SELECT products.*, images.images FROM products
 								INNER JOIN images
 								ON products.image_id = images.id
 								AND products.auction_id = 0
@@ -259,18 +266,40 @@ class AdminController extends BaseController {
 
 		$available_list = array();
 
-		foreach ( $available_products as $product) {
-			$product = (array) $product;
+		$available_list = add_thumbnail_to_products_array( $available_products );
 
-			if ( array_key_exists( 'images', $product ) && $product['images'] ) {
-				$image = json_decode( $product['images'] );
-				$product['thumbnail'] = $image -> medium;
-			} else {
-				$product['thumbnail'] = '';
+		$products_in_auction = array();
+
+		if ( is_array( $products_in_auction_raw ) && count( $products_in_auction_raw ) > 0 )
+		{
+			if ( is_array( $index_of_auction_products ) && count( $index_of_auction_products ) > 0 )
+			{
+				foreach ( $index_of_auction_products as $index )
+				{
+					foreach( $products_in_auction_raw as $key => $product )
+					{
+						if ( $product -> id == $index )
+						{
+							$products_in_auction[] = $product;
+							unset( $products_in_auction_raw[$key] );
+						}
+					}
+				}
+				if ( count($products_in_auction_raw) > 0 )
+				{
+					foreach( $products_in_auction_raw as $product )
+					{
+						$products_in_auction[] = $product;
+					}
+				}
 			}
-
-			$available_list[] = (object) $product;
+			else
+			{
+				$products_in_auction = $products_in_auction_raw;
+			}
 		}
+
+		$products_in_auction = add_thumbnail_to_products_array( $products_in_auction );
 
 		return View::make('admin/auction', $this -> data )
 				-> with( 'available_list', $available_list )
@@ -284,7 +313,9 @@ class AdminController extends BaseController {
 	 */
 	public function postAuction()
 	{
-		$auction = Auction::create( Input::all() );
+		$post = Input::all();
+		
+		$auction = Auction::create( $post );
 
 		return Redirect::to('admin/auction/' . $auction->id)
 					->with('message', 'Successfully created auction!');
@@ -297,13 +328,23 @@ class AdminController extends BaseController {
 	{
 		$put = Input::all();
 
+		
 		$auction = Auction::find( $id );
 		// for some reason update() is not working here
 
 		$auction -> products = $put['products'];
 		$auction -> start = $put['start'];
-
 		$auction -> save();
+
+		$products_in_auction = json_decode( urldecode( $put['products'] ) );
+
+		foreach( $products_in_auction as $product_id ) {
+
+			$product = Product::find( $product_id );
+			$product -> auction_id = $id;
+			$product -> save();
+
+		}
 
 		return 'success';
 	}
@@ -324,10 +365,26 @@ class AdminController extends BaseController {
 			$auction = (array) $auction;
 
 			$auction['excerpt'] = trim_words($auction['description']);
+
+			$index_of_auction_products = json_decode( urldecode( $auction['products'] ) );
+			$products_in_auction = array();
+
+			if ( is_array( $index_of_auction_products ) && count( $index_of_auction_products ) > 0 )
+			{
+				$products_in_auction = Product::whereIn('id', $index_of_auction_products) -> get();
+			}
+
+			if ( is_object($products_in_auction) )
+			{
+				$auction['products'] = $products_in_auction;
+			}
+			else
+			{
+				$auction['products'] = array();	
+			}
+
 			$auctions_list[] = (object) $auction;
 		}
-
-
 
 		return View::make('admin/auctions', $this -> data )
 				-> with( 'auctions', $auctions_list );

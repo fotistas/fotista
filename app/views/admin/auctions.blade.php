@@ -20,7 +20,11 @@
 					{{ $auction -> start }}
 				</td>
 				<td class="products">
-					{{ $auction -> products }}
+					<ul>
+						@foreach( $auction -> products as $product )
+							<li>{{ $product -> name }}</li>
+						@endforeach
+					</ul>
 				</td>
 				<td class="excerpt">
 					{{ $auction -> excerpt }}

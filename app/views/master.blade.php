@@ -8,8 +8,9 @@
 
 	<link rel="stylesheet" type="text/css" href="{{ URL::to('css/style.css') }}">
 
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="{{ URL::to('js/jquery.min.js') }}"></script>
 	<script type="text/javascript" src="{{ URL::to('js/jquery.flexslider-min.js') }}"></script>
+
 </head>
 <body>
 	<div id="languages-container">

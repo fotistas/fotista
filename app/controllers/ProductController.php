@@ -6,21 +6,16 @@ class ProductController extends BaseController {
 	{
 		$this -> data['currency'] = Product::get_currency_symbol();
 
-		$products = Product::all();
+		$products = DB::select('SELECT products.*, images.images FROM products
+								INNER JOIN images
+								ON products.image_id = images.id
+								AND products.type = ?', array('simple') );
 
-		// I need to add excerpt and thumbnail to outcoming array
-		foreach ( $products as $product) {
-			$product['excerpt'] = trim_words( $product['description'] );
+		$products = add_excerpt_to_products_array( $products );
 
-			$image = Image::find( $product['image_id'] );
-			if ( is_object( $image ) && $image -> images ) {
-				$image = json_decode($image -> images);
-				$product['thumbnail'] = $image -> medium;
-			}
-			$products_list[] = $product;
-		}
+		$products = add_thumbnail_to_products_array( $products );
 
-		return View::make('store', $this -> data) -> with('products', $products_list);
+		return View::make('store', $this -> data) -> with('products', $products);
 	}
 
 	/*
@@ -30,14 +25,13 @@ class ProductController extends BaseController {
 	{
 		$this -> data['currency'] = Product::get_currency_symbol();
 
-		$product = Product::find( $id );
+		$product = DB::select('SELECT products.*, images.images FROM products
+							INNER JOIN images
+							ON products.image_id = images.id
+							AND products.id = ?', array( $id ));
 
-		$image = Image::find( $product['image_id'] );
-		if ( is_object( $image ) && $image -> images ) {
-			$image = json_decode($image -> images);
-			$product['large'] = $image -> full;
-		}
+		$product = add_thumbnail_to_products_array( $product, 'full', 'large' );
 
-		return View::make('product', $this -> data) -> with('product', $product);
+		return View::make('product', $this -> data) -> with( 'product', $product[0] );
 	}
 }

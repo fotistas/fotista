@@ -110,24 +110,10 @@ class AdminController extends BaseController {
 								INNER JOIN images
 								ON products.image_id = images.id');
 
-		$products_list = array();
+		$products = add_excerpt_to_products_array( $products );
+		$products = add_thumbnail_to_products_array( $products );
 
-		// I need to add excerpt to outcoming array
-		foreach ( $products as $product) {
-			$product = (array) $product;
-			$product['excerpt'] = trim_words($product['description']);
-
-			if ( array_key_exists( 'images', $product ) && $product['images'] ) {
-				$image = json_decode( $product['images'] );
-				$product['thumbnail'] = $image -> medium;
-			} else {
-				$product['thumbnail'] = '';
-			}
-
-			$products_list[] = (object) $product;
-		}
-
-		return View::make('admin.products', $this -> data ) -> with('products', $products_list);
+		return View::make('admin.products', $this -> data ) -> with('products', $products);
 	}
 
 	/*---------------------------------------------------------*/
@@ -346,7 +332,8 @@ class AdminController extends BaseController {
 
 		}
 
-		return 'success';
+		return Redirect::to('admin/auction/' . $auction->id)
+					->with('message', 'Successfully updated auction!');
 	}
 
 	/*

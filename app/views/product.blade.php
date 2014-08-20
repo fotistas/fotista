@@ -25,18 +25,27 @@
 					{{ $product -> description }}
 				</div>
 				<div class="price">
-					Price:
-					@if ( $product -> sale_price > 0 )
-						<del>{{ $product -> price }} {{ $currency }}</del>
-						<ins>{{ $product -> sale_price }} {{ $currency }}</ins>
+					@if ( $product -> type != 'auction' )
+						Price:
+						@if ( $product -> sale_price > 0 )
+							<del>{{ $product -> price }} {{ $currency }}</del>
+							<ins>{{ $product -> sale_price }} {{ $currency }}</ins>
+						@else
+							<ins>{{ $product -> price }} {{ $currency }}</ins>
+						@endif
 					@else
-						<ins>{{ $product -> price }} {{ $currency }}</ins>
+						Opening bid:
+						<ins>{{ $product -> opening_bid }} {{ $currency }}</ins>
 					@endif
 				</div>
-				<form id="add-to-cart">
-					<input type="hidden" id="product-id" name="product-id" value="" />
-					<button>Add to cart</button>
-				</form>
+
+				@if ( $product -> type != 'auction' )
+					<form id="add-to-cart">
+						<input type="hidden" id="product-id" name="product-id" value="" />
+						<button>Add to cart</button>
+					</form>
+				@endif
+
 			</div>
 
 		</div> <!-- /row -->

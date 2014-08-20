@@ -7,38 +7,31 @@ class HomeController extends BaseController {
 		$this -> data['currency'] = Product::get_currency_symbol();
 
 		// Featured Products - 4 random products
-		$products = Product::orderByRaw('RAND()') -> take(4) ->get();
+		$products = DB::select('SELECT products.*, images.images FROM products
+								INNER JOIN images
+								ON products.image_id = images.id
+								AND products.type <> ?
+								ORDER BY RAND()
+								LIMIT 4', array('auction') );
 
-		// I need to add excerpt and thumbnail to outcoming array
-		foreach ( $products as $product) {
-			$product['excerpt'] = trim_words( $product['description'] );
-
-			$image = Image::find( $product['image_id'] );
-			if ( is_object( $image ) && $image -> images ) {
-				$image = json_decode($image -> images);
-				$product['thumbnail'] = $image -> medium;
-			}
-			$featured_products[] = $product;
-		}
+		$products = add_excerpt_to_products_array( $products );
+		$featured_products = add_thumbnail_to_products_array( $products );
 
 		// New Products - last 4 added
-		$products = Product::orderBy('created_at', 'desc') -> take(4) ->get();
+		$products = DB::select('SELECT products.*, images.images FROM products
+								INNER JOIN images
+								ON products.image_id = images.id
+								AND products.type <> ?
+								ORDER BY created_at DESC
+								LIMIT 4', array('auction') );
 
-		// I need to add excerpt and thumbnail to outcoming array
-		foreach ( $products as $product) {
-			$product['excerpt'] = trim_words( $product['description'] );
-
-			$image = Image::find( $product['image_id'] );
-			if ( is_object( $image ) && $image -> images ) {
-				$image = json_decode($image -> images);
-				$product['thumbnail'] = $image -> medium;
-			}
-			$new_products[] = $product;
-		}
+		$products = add_excerpt_to_products_array( $products );
+		$new_products = add_thumbnail_to_products_array( $products );
 
 		return View::make('home', $this -> data)
-						-> with('new_products', $new_products)
-						-> with('featured_products', $featured_products);
+						-> with('featured_products', $featured_products)
+						-> with('new_products', $new_products);
+						
 	}
 
 }

@@ -2,7 +2,7 @@
 
 Build with Laravel PHP Framework.
 
-I'm planning to build auction based on web sockets.
+I'm planning to build auction based on Web Sockets or Server-Sent Events.
 
 ##Installation
 

@@ -36,7 +36,8 @@
 				<div id="account-menu-container">
 					<ul class="menu grid">
 						<li class="menu-item"><a href="#"><span>My Account</span></a></li>
-						<li class="menu-item"><a href="#"><span>Sign Out</span></a></li>
+						<li class="menu-item"><a href="{{ URL::to('signin') }}"><span>Sign In</span></a></li>
+						<li class="menu-item"><a href="{{ URL::to('registration') }}"><span>Register</span></a></li>
 						<li class="menu-item cart-icon"><a href="#"><span>Cart</span></a></li>
 					</ul>
 				</div>
@@ -52,7 +53,7 @@
 				<li class="menu-item"><a class="transition" href="{{ URL::to('store') }}"><span>Store</span></a></li>
 				<li class="menu-item"><a class="transition" href="{{ URL::to('auction') }}"><span>Auction</span></a></li>
 				<li class="menu-item"><a class="transition" href="{{ URL::to('blog') }}"><span>Blog</span></a></li>
-				<li class="menu-item"><a class="transition" href="{{ URL::to('contact-us') }}"><span>Contact Us</span></a></li>
+				<li class="menu-item"><a class="transition" id="contact-us-link" href="#"><span>Contact Us</span></a></li>
 			</ul>
 
 			<div id="menu-search-container" class="float_right">
@@ -71,6 +72,30 @@
 	@yield('content')
 
 
+	<!-- Contact Form -->
+
+	<div id="contact-form-container">
+		{{ Form::open(array('url' => 'contact/us/', 'method' => 'POST', 'id' => 'contact-form')) }}
+			<div class="close"></div>
+			<div class="row">
+				{{ Form::label('name', 'Name') }}
+				{{ Form::text('name', null, array('name' => 'name') ) }}
+			</div>
+			<div class="row">
+				{{ Form::label('email', 'Email') }}
+				{{ Form::email('email', null, array('name' => 'email') ) }}
+			</div>
+			<div class="row">
+				{{ Form::label('subject', 'Subject') }}
+				{{ Form::text('subject', null, array('name' => 'subject') ) }}
+			</div>
+			<div class="row">
+				{{ Form::label('message', 'Text message') }}
+				{{ Form::textarea('message', null, array('name' => 'message') ) }}
+			</div>
+			{{ Form::submit('Submit'); }}
+		{{ Form::close() }}
+	</div>
 
 	<!-- Footer -->
 	<div id="footer">
@@ -147,6 +172,8 @@
 
 		</div> <!-- /container -->
 	</div>
+
+	<script src="{{ URL::to('js/client-scripts.js') }}"></script>
 
 </body>
 </html>

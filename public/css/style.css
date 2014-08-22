@@ -106,13 +106,19 @@ h1, h2 {
 
 /*------------- Forms -----------------*/
 
-.input-wrap input {
-	border-radius: 3px;
-	border: 1px solid rgb(148, 148, 148);
-	padding: 3px 5px;
+form label {
+	display: block;
 }
 
-button, .btn {
+form input {
+	border-radius: 3px;
+	border: 1px solid rgb(184, 184, 184);
+	padding: 3px 5px;
+	width: 100%;
+	margin-bottom: 12px;
+}
+
+button, .btn, form input[type=submit] {
 	border: 0;
 	border-radius: 5px;
 	background: rgb(52, 111, 165);
@@ -125,6 +131,12 @@ button, .btn {
 button:hover, .btn:hover {
 	background: rgb(70, 136, 197);
 	text-decoration: none;
+}
+
+form textarea {
+	width: 100%;
+	border: 1px solid rgb(184, 184, 184);
+	border-radius: 3px;
 }
 
 
@@ -519,6 +531,29 @@ button:hover, .btn:hover {
 	width: 100px;
 }
 
+/*---------------- Search Form -----------------*/
+
+#search-form input {
+	margin: 0;
+}
+
+/*---------------- Auction Form -----------------*/
+
+#auction-reminder label {
+	display: inline;
+}
+
+#auction-reminder input {
+	width: auto;
+}
+
+/*---------------- SignIn Form -----------------*/
+
+#signin-form {
+	width: 200px;
+	margin: 0 auto;
+}
+
 /*---------------- Contact Form -----------------*/
 
 #contact-form-container {
@@ -560,28 +595,6 @@ button:hover, .btn:hover {
 	position: absolute;
 	right: -5px;
 	top: -5px;
-}
-
-#contact-form label {
-	display: block;
-}
-
-#contact-form input {
-	border: 1px solid rgb(184, 184, 184);
-	border-radius: 3px;
-	padding: 3px;
-	width: 100%;
-	margin-bottom: 12px;
-}
-
-#contact-form input[type=submit] {
-	cursor: pointer;
-}
-
-#contact-form textarea {
-	width: 100%;
-	border: 1px solid rgb(184, 184, 184);
-	border-radius: 3px;
 }
 
 /*------------------------------------------------*/

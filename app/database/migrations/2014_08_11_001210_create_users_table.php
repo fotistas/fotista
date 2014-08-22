@@ -14,8 +14,10 @@ class CreateUsersTable extends Migration {
 	{
 		Schema::create('users', function( $table ){
 			$table -> increments('id');
+			$table -> string('username') -> unique(); // VARCHAR(255)
 			$table -> string('email'); // VARCHAR(255)
 			$table -> string('password'); // VARCHAR(255)
+			$table -> enum('permission', array('admin', 'customer'));
 			$table -> string('first_name'); // VARCHAR(255)
 			$table -> string('last_name'); // VARCHAR(255)
 			$table -> timestamps();
@@ -34,7 +36,7 @@ class CreateUsersTable extends Migration {
 	public function down()
 	{
 		Schema::table('bids', function($table){
-			$table -> sdropForeign('bids_user_id_foreign');
+			$table -> dropForeign('bids_user_id_foreign');
 			$table -> dropColumn('user_id');
 		});
 		Schema::drop('users');

@@ -36,8 +36,8 @@
 				<div id="account-menu-container">
 					<ul class="menu grid">
 						<li class="menu-item"><a href="#"><span>My Account</span></a></li>
-						<li class="menu-item"><a href="{{ URL::to('signin') }}"><span>Sign In</span></a></li>
-						<li class="menu-item"><a href="{{ URL::to('registration') }}"><span>Register</span></a></li>
+						<li class="menu-item"><a href="{{ URL::to('user/signin') }}"><span>Sign In</span></a></li>
+						<li class="menu-item"><a href="{{ URL::to('user/registration') }}"><span>Register</span></a></li>
 						<li class="menu-item cart-icon"><a href="#"><span>Cart</span></a></li>
 					</ul>
 				</div>
@@ -52,12 +52,11 @@
 				<li class="menu-item"><a class="transition" href="{{ URL::to('') }}"><span>Home</span></a></li>
 				<li class="menu-item"><a class="transition" href="{{ URL::to('store') }}"><span>Store</span></a></li>
 				<li class="menu-item"><a class="transition" href="{{ URL::to('auction') }}"><span>Auction</span></a></li>
-				<li class="menu-item"><a class="transition" href="{{ URL::to('blog') }}"><span>Blog</span></a></li>
 				<li class="menu-item"><a class="transition" id="contact-us-link" href="#"><span>Contact Us</span></a></li>
 			</ul>
 
 			<div id="menu-search-container" class="float_right">
-				<form>
+				<form id="search-form">
 					<span class="fa fa-search"></span>
 					<span class="input-wrap input-text-wrap">
 						<input type="text" name="search" class="transition" id="search" placeholder="Search" />

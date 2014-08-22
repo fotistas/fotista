@@ -17,5 +17,7 @@ Route::controller('/store', 'ProductController');
 
 Route::controller('/auction', 'AuctionController');
 
+Route::controller('/user', 'UserController');
+
 Route::controller('/', 'HomeController');
 

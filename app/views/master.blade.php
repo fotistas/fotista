@@ -8,9 +8,6 @@
 
 	<link rel="stylesheet" type="text/css" href="{{ URL::to('css/style.css') }}">
 
-	<script src="{{ URL::to('js/jquery.min.js') }}"></script>
-	<script type="text/javascript" src="{{ URL::to('js/jquery.flexslider-min.js') }}"></script>
-
 </head>
 <body>
 	<div id="languages-container">
@@ -36,7 +33,7 @@
 				<div id="account-menu-container">
 					<ul class="menu grid">
 						@if( Auth::check() )
-							<li class="menu-item"><a href="#"><span>My Account</span></a></li>
+							<li class="menu-item"><a href="{{ URL::to('user/account') }}"><span>My Account</span></a></li>
 							<li class="menu-item"><a href="{{ URL::to('user/signout') }}"><span>Sign Out</span></a></li>
 						@else
 							<li class="menu-item"><a href="{{ URL::to('user/signin') }}"><span>Sign In</span></a></li>
@@ -184,6 +181,9 @@
 		</div> <!-- /container -->
 	</div>
 
+	<script src="{{ URL::to('js/jquery.min.js') }}"></script>
+	<script type="text/javascript" src="{{ URL::to('js/jquery.flexslider-min.js') }}"></script>
+	
 	<script src="{{ URL::to('js/client-scripts.js') }}"></script>
 
 </body>

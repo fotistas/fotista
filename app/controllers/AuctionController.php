@@ -78,4 +78,13 @@ class AuctionController extends BaseController {
 		return View::make('product', $this -> data) -> with('product', $product[0] );
 	}
 
+
+	/*
+	 *	Show auction started page
+	 */
+	public function getStarted()
+	{
+		return View::make('auction-app');
+	}
+
 }

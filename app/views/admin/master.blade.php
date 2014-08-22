@@ -40,7 +40,7 @@
 				</ul>
 			</li>
 			<li class="{{ $active == 'users' ? 'active' : '' }} has-children">
-				<a href="#" class=""><span class="fa fa-users"></span> Users</a>
+				<a href="{{ URL::to('admin/users') }}" class=""><span class="fa fa-users"></span> Users</a>
 				<ul class="menu sub-menu">
 					<li><a href="{{ URL::to('admin/newuser') }}">Add New User</a></li>
 					<li><a href="{{ URL::to('admin/users') }}">Users list</a></li>

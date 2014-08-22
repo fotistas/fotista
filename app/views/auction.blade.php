@@ -7,9 +7,13 @@
 	<h1>Auction Products</h1>
 
 	<div id="auction-message">
-		Auction will start <span class="date">{{ $auction -> start }}</span>
+		<!-- Auction will start <span class="date">{{ $auction -> start }}</span> -->
+		<div class="row">
+			Auction started <a href="{{ URL::to('auction/started') }}" id="open-auction-started" class="btn">click here to open it</a>
+		</div>
 	</div>
 
+	<!--
 	<form id="auction-reminder">
 		<label for="email">Remind me 30 min before auction starts:</label>
 		<span class="input-wrap input-email-wrap">
@@ -17,6 +21,7 @@
 		</span>
 		<button class="transition">Remind me</button>
 	</form>
+	-->
 
 	<div class="product-list auction grid">
 

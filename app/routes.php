@@ -19,5 +19,7 @@ Route::controller('/auction', 'AuctionController');
 
 Route::controller('/user', 'UserController');
 
+Route::controller('/api', 'ApiController');
+
 Route::controller('/', 'HomeController');
 

@@ -415,7 +415,6 @@ form .form-errors-list li {
 #auction-reminder {
 	text-align: center;
 	padding-bottom: 20px;
-	border-bottom: 1px dotted rgb(216, 216, 216);
 	margin-bottom: 15px;
 }
 
@@ -424,6 +423,10 @@ form .form-errors-list li {
 	color: rgb(20, 161, 240);
 	text-shadow: 0px 0px 2px rgb(121, 223, 255);
 	font-size: 120%;
+}
+
+.product-list.auction {
+	border-top: 1px dotted rgb(216, 216, 216);
 }
 
 .product-list.auction .product .count {

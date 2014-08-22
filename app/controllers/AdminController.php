@@ -84,9 +84,10 @@ class AdminController extends BaseController {
 	 */
 	public function deleteProduct( $id )
 	{
-		$product = Product::find($id);
-		
-		$product -> delete();
+		if ( $id ) {
+			$product = Product::find($id);
+			$product -> delete();
+		}
 
 		return URL::to('admin/products');
 	}
@@ -375,6 +376,45 @@ class AdminController extends BaseController {
 
 		return View::make('admin/auctions', $this -> data )
 				-> with( 'auctions', $auctions_list );
+	}
+
+	/*---------------------------------------------------------*/
+
+	/*
+	 *	Delete auction
+	 */
+	public function deleteAuction( $id = 0 )
+	{
+		if ( $id ) {
+			$auction = Auction::find($id);
+			$auction -> delete();
+
+			Product::where('auction_id', '=', $id) -> update( array('auction_id' => '0') );
+		}
+
+		return URL::to('admin/auctions');
+	}
+
+
+	/*-------------------------------------------------------*/
+	/*---------------------> User <--------------------------*/
+
+	/*
+	 *	Get list of all users
+	 */
+	public function getUsers( $message = '' )
+	{
+		$this -> data['title'] = 'Users';
+		$this -> data['title_icon'] = 'fa-users';
+		$this -> data['active'] = 'users';
+		$this -> data['currency'] = Product::get_currency_symbol();
+
+		if( $message != '' ) Session::put('message', $message);
+			else Session::put('message', 'false');
+
+		$users = User::get();
+
+		return View::make('admin.users', $this -> data ) -> with('users', $users);
 	}
 
 }

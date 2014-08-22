@@ -26,8 +26,7 @@ class UserController extends BaseController {
 	public function postSignin()
 	{
 		if(Auth::attempt(Input::only('username', 'password'))) {
-			return Redirect::to('user/account/' . Auth::id() )
-					-> with('message', 'You are now logged in!');
+			return Redirect::to('user/account');
 		} else {
 			return Redirect::to('user/signin')
 					-> with('message', 'Your username/password combination was incorrect')
@@ -63,7 +62,7 @@ class UserController extends BaseController {
 			$user -> password = Hash::make(Input::get('password'));
 			$user -> save();
 
-			return Redirect::to('user/account/' . $user->id)
+			return Redirect::to('user/account')
 					-> with('message', 'thank you for registration!');
 		} else {
 			return Redirect::to('user/registration')
@@ -89,10 +88,11 @@ class UserController extends BaseController {
 	/*
 	 *	Show users account page
 	 */
-	public function getAccount( $id = 0 )
+	public function getAccount()
 	{
 		if ( Auth::check() ) {
-			return View::make('user/account');
+			return View::make('user/account')
+				-> with( 'user', Auth::user() );
 		} else {
 			return Redirect::to('user/signin')
 				-> with('message', 'You need to be logged in to access this page!');

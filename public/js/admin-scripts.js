@@ -162,3 +162,18 @@ function success_message( msg ) {
 		$( '#success-message' ).slideToggle('fast')
 	}, 2000);
 }
+
+
+$('#delete_auction').click(function(e){
+	e.preventDefault();
+	var url = document.URL;
+	var data = $('#auction-form').serialize();
+	$.ajax({
+			type: "DELETE",
+			url: url,
+			data: data
+		})
+		.done(function( msg ) {
+			window.location.href = msg + '/Auction deleted!';
+		});
+});

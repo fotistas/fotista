@@ -16,12 +16,6 @@
 				</li>
 			</ul>
 		</div>
-		<script type="text/javascript">
-			jQuery('#top-slider').flexslider({
-				controlNav: false,
-				slideshowSpeed: 6000,
-			});
-		</script>
 	</div>
 
 	<!-- Store -->

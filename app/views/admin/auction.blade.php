@@ -52,7 +52,16 @@
 					{{ Form::text('start', null, array('name' => 'start') ) }}
 				</div>
 				<div class="row">
-					<button id="save_auction">Save</button>
+					<div class="float_left">
+						<button id="save_auction">
+							Save
+						</button>
+					</div>
+					<div class="float_right">
+						<a href="#" id="delete_auction" class="danger">
+							Delete
+						</a>
+					</div>
 				</div>
 				<div class="row">
 					<div id="error-message">

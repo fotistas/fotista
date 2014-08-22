@@ -321,6 +321,8 @@ class AdminController extends BaseController {
 
 		$auction -> products = $put['products'];
 		$auction -> start = $put['start'];
+		$auction -> enter_prod_time = $put['enter_prod_time'];
+		$auction -> after_bid_time = $put['after_bid_time'];
 		$auction -> save();
 
 		$products_in_auction = json_decode( urldecode( $put['products'] ) );

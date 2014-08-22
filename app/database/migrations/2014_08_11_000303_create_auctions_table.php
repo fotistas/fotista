@@ -17,6 +17,7 @@ class CreateAuctionsTable extends Migration {
 			$table -> string('name'); // VARCHAR(255)
 			$table -> text('products');
 			$table -> dateTime('start');
+			$table -> enum('status', array('active', 'ended'));
 			$table -> integer('enter_prod_time'); // time in seconds for product just entered auction
 			$table -> integer('after_bid_time'); // additional time in seconds after new bid
 			$table -> text('description');

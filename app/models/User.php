@@ -1,10 +1,21 @@
 <?php
 
+use Illuminate\Auth\UserInterface;
+
 class User extends Eloquent implements UserInterface {
 
-	protected $fillable = array('first_name', 'last_name', 'email');
+	protected $fillable = array('username', 'first_name', 'last_name', 'email');
 
 	protected $guarded = array('id', 'password');
+
+	public static $rules = array(
+		'first_name'=>'required|alpha|min:2',
+		'last_name'=>'alpha',
+		'username' => 'required|min:3|unique:users',
+		'email'=>'required|email',
+		'password'=>'required|alpha_num|between:3,12|confirmed',
+		'password_confirmation'=>'required|alpha_num|between:3,12'
+		);
 
 	public function getAuthIdentifier() {
 		return $this->getKey();

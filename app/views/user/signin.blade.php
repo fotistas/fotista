@@ -14,7 +14,7 @@
 		</div>
 		<div class="row">
 			{{ Form::label('password', 'Password') }}
-			{{ Form::text('password') }}
+			{{ Form::password('password') }}
 		</div>
 		{{ Form::submit('Sign In') }}
 	{{ Form::close() }}

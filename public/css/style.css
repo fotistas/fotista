@@ -139,6 +139,17 @@ form textarea {
 	border-radius: 3px;
 }
 
+form .form-errors-list {
+	background: rgb(255, 200, 200);
+	border-radius: 5px;
+	padding: 10px 0 10px 30px;
+	color: rgb(92, 33, 33);
+	text-shadow: 1px 1px rgb(255, 252, 252);
+}
+
+form .form-errors-list li {
+	margin-bottom: 5px;
+}
 
 /*--------------------------------------*/
 /*----------- Main Menu ----------------*/
@@ -549,8 +560,9 @@ form textarea {
 
 /*---------------- SignIn Form -----------------*/
 
-#signin-form {
-	width: 200px;
+#signin-form,
+#registration-form {
+	width: 300px;
 	margin: 0 auto;
 }
 

@@ -35,10 +35,14 @@
 			<div class="float_right">
 				<div id="account-menu-container">
 					<ul class="menu grid">
-						<li class="menu-item"><a href="#"><span>My Account</span></a></li>
-						<li class="menu-item"><a href="{{ URL::to('user/signin') }}"><span>Sign In</span></a></li>
-						<li class="menu-item"><a href="{{ URL::to('user/registration') }}"><span>Register</span></a></li>
-						<li class="menu-item cart-icon"><a href="#"><span>Cart</span></a></li>
+						@if( Auth::check() )
+							<li class="menu-item"><a href="#"><span>My Account</span></a></li>
+							<li class="menu-item"><a href="{{ URL::to('user/signout') }}"><span>Sign Out</span></a></li>
+						@else
+							<li class="menu-item"><a href="{{ URL::to('user/signin') }}"><span>Sign In</span></a></li>
+							<li class="menu-item"><a href="{{ URL::to('user/registration') }}"><span>Register</span></a></li>
+						@endif
+							<li class="menu-item cart-icon"><a href="#"><span>Cart</span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -67,6 +71,14 @@
 	</div>
 
 
+	<div class="container">
+		@if( Session::has('message') && Session::get('message') != 'false' )
+			<div class="alert">
+				{{Session::get('message')}}
+			</div>
+		@endif
+	</div>
+	
 
 	@yield('content')
 

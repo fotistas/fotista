@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration {
 			$table -> enum('permission', array('admin', 'customer'));
 			$table -> string('first_name'); // VARCHAR(255)
 			$table -> string('last_name'); // VARCHAR(255)
+			$table -> string('remember_token', 100) -> nullable() -> default( NULL ); // VARCHAR(100)
 			$table -> timestamps();
 		});
 

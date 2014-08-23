@@ -5,8 +5,13 @@ class AuctionController extends BaseController {
 	public function getIndex()
 	{
 		$this -> data['currency'] = Product::get_currency_symbol();
+		$this -> data['now'] = date('Y-m-d H:i:s');
 
-		$auction = Auction::orderBy('start', 'asc') -> first();
+		$auction = Auction::orderBy('start', 'asc')
+							-> where('status', '=', 'active')
+							-> first();
+
+		$products_in_auction = array();
 
 		if ( is_object($auction) )
 		{
@@ -17,8 +22,6 @@ class AuctionController extends BaseController {
 										ON products.image_id = images.id
 										AND products.auction_id = ?
 										AND products.type = ?', array( $auction -> id, 'auction' ));
-
-			$products_in_auction = array();
 
 			if ( is_array( $products_in_auction_raw ) && count( $products_in_auction_raw ) > 0 )
 			{

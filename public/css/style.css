@@ -468,10 +468,18 @@ form .form-errors-list li {
 /*-------------- Auction Started -----------------*/
 /*------------------------------------------------*/
 
-.auction-list > .title {
-	font-weight: 700;
-	font-size: 17px;
-	margin-bottom: 10px;
+#auction-started {
+	padding: 10px 5px 0 5px;
+}
+
+#auction-started h2 {
+	font-size: 18px;
+	margin: 0 0 10px 0;
+}
+
+.auction-list {
+	height: 860px;
+	overflow-y: scroll;
 }
 
 .auction-list .product {

@@ -39,7 +39,7 @@
 							<li class="menu-item"><a href="{{ URL::to('user/signin') }}"><span>Sign In</span></a></li>
 							<li class="menu-item"><a href="{{ URL::to('user/registration') }}"><span>Register</span></a></li>
 						@endif
-							<li class="menu-item cart-icon"><a href="#"><span>Cart</span></a></li>
+							<!-- <li class="menu-item cart-icon"><a href="#"><span>Cart</span></a></li> -->
 					</ul>
 				</div>
 			</div>
@@ -181,8 +181,8 @@
 		</div> <!-- /container -->
 	</div>
 
-	<script src="{{ URL::to('js/jquery.min.js') }}"></script>
-	<script type="text/javascript" src="{{ URL::to('js/jquery.flexslider-min.js') }}"></script>
+	<script src="{{ URL::to('js/jquery/jquery.min.js') }}"></script>
+	<script type="text/javascript" src="{{ URL::to('js/jquery/jquery.flexslider-min.js') }}"></script>
 	
 	<script src="{{ URL::to('js/client-scripts.js') }}"></script>
 

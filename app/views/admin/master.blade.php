@@ -114,9 +114,9 @@
 	</div>
 
 
-	<script src="{{ URL::to('js/jquery.min.js') }}"></script>
-	<script src="{{ URL::to('js/jquery-ui.min.js') }}"></script>
-	<script src="{{ URL::to('js/jquery.datetimepicker.js') }}"></script>
+	<script src="{{ URL::to('js/jquery/jquery.min.js') }}"></script>
+	<script src="{{ URL::to('js/jquery/jquery-ui.min.js') }}"></script>
+	<script src="{{ URL::to('js/jquery/jquery.datetimepicker.js') }}"></script>
 
 	<script src="{{ URL::to('js/admin-scripts.js') }}"></script>
 

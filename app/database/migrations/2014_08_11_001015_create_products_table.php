@@ -17,7 +17,9 @@ class CreateProductsTable extends Migration {
 			$table -> string('name'); // VARCHAR(255)
 			$table -> text('description'); // TEXT
 			$table -> enum('type', array('simple', 'auction'));
-			$table -> enum('type', array('draft', 'publish', 'hidden'));
+			$table -> enum('status', array('draft', 'publish', 'hidden'));
+			$table -> enum('auction_status', array('active', 'ended'));
+			$table -> integer('auction_sum_time');
 			$table -> string('lang'); // VARCHAR(255)
 			$table -> float('price');
 			$table -> float('sale_price');

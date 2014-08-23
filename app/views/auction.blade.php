@@ -7,10 +7,15 @@
 	<h1>Auction Products</h1>
 
 	<div id="auction-message">
-		<!-- Auction will start <span class="date">{{ $auction -> start }}</span> -->
-		<div class="row">
-			Auction started <a href="{{ URL::to('auction/started') }}" id="open-auction-started" class="btn">click here to open it</a>
-		</div>
+		@if ( $auction -> start != '' )
+			@if ( $now < $auction -> start )
+				Auction will start <span class="date">{{ $auction -> start }}</span>
+			@else
+				<div class="row">
+					Auction started <a href="{{ URL::to('auction/started') }}" id="open-auction-started" class="btn">click here to open it</a>
+				</div>
+			@endif
+		@endif
 	</div>
 
 	<!--

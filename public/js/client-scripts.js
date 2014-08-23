@@ -21,4 +21,5 @@ $('#open-auction-started').click(function(e){
 	var url = $(this).attr('href');
 	newwindow=window.open(url,'Live Auction','height=905, width=905, location=no, menubar=no, directories=no, titlebar=no, toolbar=no');
     if (window.focus) {newwindow.focus()}
+    
 });

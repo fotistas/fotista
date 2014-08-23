@@ -8,48 +8,36 @@
 	<link rel="stylesheet" type="text/css" href="{{ URL::to('css/style.css') }}">
 
 </head>
-<body>
+<body id="auction-started" ng-app="auction">
 
 <!-- Auction Started -->
-<div class="container">
+<div ng-controller="auctionCtrl">
 
 	<div class="row">
 
-		<div class="auction-list col-1-5">
+		<div class="col-1-5">
+			<h2>Next products</h2>
 
-			<div class="title">Next products</div>
+			<div class="auction-list">
 
-			<div class="product">
-				<div class="thumbnail">
-					<img src="images/product/1df5c213d7bb_300.jpg" />
+				<div class="product" ng-repeat="product in data.products">
+					<div class="thumbnail">
+						<img ng-src="<% product.thumbnail %>" />
+					</div>
+					<div class="title"><% product.name %></div>
 				</div>
-				<div class="title">Wind</div>
-			</div>
 
-			<div class="product">
-				<div class="thumbnail">
-					<img src="images/product/aqua_300.jpg" />
-				</div>
-				<div class="title">The Aquarium</div>
-			</div>
-
-			<div class="product">
-				<div class="thumbnail">
-					<img src="images/product/Harry-Winston-Opus-11_300.jpg" />
-				</div>
-				<div class="title">Opus Eleven</div>
-			</div>
-
-		</div> <!-- /auction-list -->
+			</div> <!-- /auction-list -->
+		</div>
 
 		<div class="auction-main col-3-5">
 
 			<div class="thumbnail">
-				<img src="images/product/Vantasy-Mens-Luxury-Gold-Plated-Stainless-Steel-Hand-Wind-Skeleton-Analog-Mechanical-Black-Leather-Wrist-Watch-3.jpg" />
+				<img ng-src="<% data.current_product.image %>" />
 			</div>
-			<div class="title">Bossman Watch</div>
+			<div class="title"> <% data.current_product.name %> </div>
 			<div class="current-bid">
-				$ <span class="amount">700</span>
+				<% data.currency %> <span class="amount"> <% data.current_product.bid %> </span>
 			</div>
 
 			<form id="put-bid">
@@ -70,22 +58,6 @@
 				New bid <span class="amount">400</span> $
 			</div>
 
-			<div class="message new-bid">
-				New bid <span class="amount">450</span> $
-			</div>
-
-			<div class="message new-bid">
-				New bid <span class="amount">700</span> $
-			</div>
-
-			<div class="message new-product">
-				New product for auction: <span class="name">Wind</span>
-			</div>
-
-			<div class="message new-bid">
-				New bid <span class="amount">1200</span> $
-			</div>
-
 		</div> <!-- /auction-messages -->
 
 	</div>
@@ -93,7 +65,7 @@
 </div> <!-- /container -->
 
 
-<script src="{{ URL::to('js/jquery.min.js') }}"></script>
+<script src="{{ URL::to('js/angular/angular.min.js') }}"></script>
 <script src="{{ URL::to('js/auction-app.js') }}"></script>
 
 </body>

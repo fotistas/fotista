@@ -1,8 +1,8 @@
 # Auction
 
-Build with Laravel PHP Framework.
+Build with Laravel PHP Framework on server side and Angular JS on client side.
 
-I'm planning to build auction based on Web Sockets or Server-Sent Events.
+I'm planning to use angular only for real time auction and not for whole website.
 
 ##Installation
 

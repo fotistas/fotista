@@ -58,6 +58,21 @@ class ApiController extends BaseController {
 			$products_in_auction = add_excerpt_to_products_array( $products_in_auction );
 			$products_in_auction = add_thumbnail_to_products_array( $products_in_auction );
 
+			// now I need to delete produvcts that are not in auction any more
+			// product is "ended" when it is time to move to the next in line
+
+			foreach( $products_in_auction as $key => $product ) {
+				if ( $product -> auction_status == 'ended' ) {
+					unset( $products_in_auction[$key] );
+				} else {
+					// products are in the line, therefore if we get first one with status "active"
+					// thats mean that all products after it are "active" too
+					break;
+				}
+			}
+
+			$products_in_auction = array_values( $products_in_auction );
+
 			$auction = $auction -> toArray();
 
 			$error_code = 0;
@@ -80,6 +95,7 @@ class ApiController extends BaseController {
 				'products' => $products_in_auction,
 				'currency' => Product::get_currency_symbol(),
 				'status' => $status,
+				'logged_in' => Auth::check(),
 				'error_code' => $error_code
 				);
 
@@ -94,7 +110,13 @@ class ApiController extends BaseController {
 	 */
 	function getLiveauction()
 	{
+		if ( Auth::check() ) {
+			$obj = array( 'status' => 'user is logged in' );
+		} else {
+			$obj = array( 'status' => 'have no idea who you are' );
+		}
 
+		return Response::json( $obj );
 	}
 
 }

@@ -506,11 +506,19 @@ form .form-errors-list li {
 	font-size: 17px;
 }
 
+.auction-main .excerpt {
+	margin-bottom: 10px;
+}
+
 .auction-main .current-bid {
-	font-weight: 700;
-	font-size: 30px;
+	font-size: 22px;
 	text-align: right;
 	margin-bottom: 10px;
+}
+
+.auction-main .current-bid .bid {
+	font-size: 30px;
+	font-weight: 700;
 	color: rgb(69, 118, 151);
 }
 
